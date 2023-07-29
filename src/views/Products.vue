@@ -44,9 +44,10 @@
    const products = ref([])
    const totalPages = ref(1)  //共幾頁
    const thePage = ref(1)  //第幾頁
+   const API = import.meta.env.VITE_API_URL
     const loadProducts = async ()=>{
        
-      const response = await fetch(`https://localhost:7192/api/Products?keyword=${keyword.value}&page=${thePage.value}&pageSize=3`)
+      const response = await fetch(`${API}Products?keyword=${keyword.value}&page=${thePage.value}&pageSize=3`)
       const datas = await response.json()
       products.value = datas.products
       console.log(products.value)
