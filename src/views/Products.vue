@@ -1,5 +1,13 @@
 <template>
         <h2>Products Page</h2>
+        <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6"></div>
+                <div class="col-3">
+                        <input type="search" v-model="keyword" @input="inputHandler" class="form-control" placeholder="請輸入產品名稱">
+               {{ keyword }}
+                </div>
+        </div>
         <table class="table table-bordered">
                 <thead>
                         <tr>
@@ -21,20 +29,28 @@
 </template>
     
 <script setup>
-   import {ref, reactive} from 'vue'
+   import {ref, reactive, onMounted} from 'vue'
     //ajax
     //XMLHttpRequest、fetch
     //jQuery $.ajax() $.get()....
     //axios
+    const keyword = ref("")
    const products = ref([])
-
     const loadProducts = async ()=>{
-      const response = await fetch('https://localhost:7192/api/Products')
+       
+      const response = await fetch(`https://localhost:7192/api/Products?keyword=${keyword.value}`)
       const datas = await response.json()
       products.value = datas
       console.log(products.value)
     }
-    loadProducts()
+
+    const inputHandler = ()=>{
+        loadProducts()
+    }
+    onMounted(()=>{
+         loadProducts()
+    })
+   
 </script>
     
 <style>
