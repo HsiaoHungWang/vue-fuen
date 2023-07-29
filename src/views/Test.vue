@@ -1,9 +1,9 @@
 <template>
-      <h2>Home Page</h2>
+        <h2>Test Page</h2>
 </template>
     
-<script setup>
- 
+<script setup lang='ts'>
+    
 </script>
     
 <style>
