@@ -8,7 +8,7 @@ import Navbar from './components/Navbar.vue'
 <template>
   <div class="container">
     <Navbar class="mb-3"></Navbar>
-  <h2>Hello Vue!!</h2>
+  
   <router-view />
   </div>
 

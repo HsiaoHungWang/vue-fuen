@@ -1,9 +1,11 @@
 <template>
-        <h2>About Page</h2>
+    <input type="text" v-model="message">
+    <h2>{{ message }}</h2>
 </template>
     
-<script setup lang='ts'>
-    
+<script setup>
+    import { ref } from 'vue'
+    const message = ref("Hello About")
 </script>
     
 <style>

@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import Contact from '../views/Contact.vue'
-import Test from '../views/Test.vue'
+import Products from '../views/Products.vue'
 //路由設定
 const routes = [
     {
@@ -21,9 +21,9 @@ const routes = [
         component: Contact
     },
     {
-        //http://localhost/test
-        path: '/test',
-        component: Test
+        //http://localhost/products
+        path: '/products',
+        component: Products
     }
 ]
 
