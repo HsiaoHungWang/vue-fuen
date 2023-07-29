@@ -25,6 +25,12 @@
                         </tr>
                 </tbody>
         </table>
+        <nav aria-label="Page navigation example">
+  <ul class="pagination">   
+    <li class="page-item" v-for="(value, index) in totalPages" :key="index" @click="clickHandler(value)">
+        <a :class="{'currentPage':thePage===value, 'page-link':true}">{{ value }}</a></li>   
+  </ul>
+</nav>
 </template>
     
 <script setup>
@@ -36,17 +42,26 @@
     //axios
     const keyword = ref("")
    const products = ref([])
+   const totalPages = ref(1)  //共幾頁
+   const thePage = ref(1)  //第幾頁
     const loadProducts = async ()=>{
        
-      const response = await fetch(`https://localhost:7192/api/Products?keyword=${keyword.value}`)
+      const response = await fetch(`https://localhost:7192/api/Products?keyword=${keyword.value}&page=${thePage.value}&pageSize=3`)
       const datas = await response.json()
-      products.value = datas
+      products.value = datas.products
       console.log(products.value)
+      totalPages.value = datas.totalPages
     }
 
     //這個方法是由子元件引發searchInput事件後執行的
     const inputHandler = value=>{
         keyword.value = value
+        loadProducts()
+    }
+
+    //分頁
+    const clickHandler=(page)=>{
+        thePage.value = page
         loadProducts()
     }
     onMounted(()=>{
@@ -55,6 +70,11 @@
    
 </script>
     
-<style>
-    
+<style scoped>
+    .currentPage{
+        background-color: lightgray;
+    }
+    .pagination li{
+        cursor: pointer;
+    }
 </style>
