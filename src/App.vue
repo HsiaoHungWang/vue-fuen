@@ -1,14 +1,10 @@
 <script setup>
-import Home from './views/Home.vue';
-import About from './views/About.vue';
-import Contact from './views/Contact.vue';
+
 </script>
 
 <template>
   <h2>Hello Vue!!</h2>
-  <Home></Home>
-  <About></About>
-  <Contact></Contact>
+  <router-view />
 </template>
 
 <style scoped>
