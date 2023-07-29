@@ -4,8 +4,7 @@
                 <div class="col-3"></div>
                 <div class="col-6"></div>
                 <div class="col-3">
-                        <input type="search" v-model="keyword" @input="inputHandler" class="form-control" placeholder="請輸入產品名稱">
-               {{ keyword }}
+                     <SearchTextBox @searchInput="inputHandler"></SearchTextBox>
                 </div>
         </div>
         <table class="table table-bordered">
@@ -30,6 +29,7 @@
     
 <script setup>
    import {ref, reactive, onMounted} from 'vue'
+   import SearchTextBox from '../components/SearchTextBox.vue';
     //ajax
     //XMLHttpRequest、fetch
     //jQuery $.ajax() $.get()....
@@ -44,7 +44,9 @@
       console.log(products.value)
     }
 
-    const inputHandler = ()=>{
+    //這個方法是由子元件引發searchInput事件後執行的
+    const inputHandler = value=>{
+        keyword.value = value
         loadProducts()
     }
     onMounted(()=>{
